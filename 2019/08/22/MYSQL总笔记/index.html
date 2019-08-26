@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="MYSQL总笔记"><meta name="keywords" content="总结"><meta name="author" content="钟舒艺"><meta name="copyright" content="钟舒艺"><title>MYSQL总笔记 | 钟舒艺的博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="dns-prefetch" href="https://unpkg.com"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitment/style/default.min.css"><script src="https://cdn.jsdelivr.net/npm/gitment/dist/gitment.browser.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库基础"><span class="toc-number">1.</span> <span class="toc-text">数据库基础</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据定义"><span class="toc-number">2.</span> <span class="toc-text">数据定义</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#定义数据库"><span class="toc-number">2.1.</span> <span class="toc-text">定义数据库</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建数据库"><span class="toc-number">2.1.1.</span> <span class="toc-text">创建数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#选择与查看数据库"><span class="toc-number">2.1.2.</span> <span class="toc-text">选择与查看数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改数据库"><span class="toc-number">2.1.3.</span> <span class="toc-text">修改数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除数据库"><span class="toc-number">2.2.</span> <span class="toc-text">删除数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义表"><span class="toc-number">2.3.</span> <span class="toc-text">定义表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#常用数据类型"><span class="toc-number">2.3.1.</span> <span class="toc-text">常用数据类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#创建表"><span class="toc-number">2.3.2.</span> <span class="toc-text">创建表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查看表"><span class="toc-number">2.3.3.</span> <span class="toc-text">查看表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#修改表"><span class="toc-number">2.3.4.</span> <span class="toc-text">修改表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重命名表"><span class="toc-number">2.3.5.</span> <span class="toc-text">重命名表</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除表"><span class="toc-number">2.3.6.</span> <span class="toc-text">删除表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据的完整性约束"><span class="toc-number">2.4.</span> <span class="toc-text">数据的完整性约束</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义实体完整性"><span class="toc-number">2.4.1.</span> <span class="toc-text">定义实体完整性</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#主键约束"><span class="toc-number">2.4.1.1.</span> <span class="toc-text">主键约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#完整性约束的命名"><span class="toc-number">2.4.1.2.</span> <span class="toc-text">完整性约束的命名</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#候选键约束"><span class="toc-number">2.4.1.3.</span> <span class="toc-text">候选键约束</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义参照完整性-外键"><span class="toc-number">2.4.2.</span> <span class="toc-text">定义参照完整性(外键)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户定义的完整性"><span class="toc-number">2.4.3.</span> <span class="toc-text">用户定义的完整性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新完整性约束"><span class="toc-number">2.4.4.</span> <span class="toc-text">更新完整性约束</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#删除约束"><span class="toc-number">2.4.4.1.</span> <span class="toc-text">删除约束</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#添加约束"><span class="toc-number">2.4.4.2.</span> <span class="toc-text">添加约束</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据查询"><span class="toc-number">3.</span> <span class="toc-text">数据查询</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.jpg"></div><div class="author-info__name text-center">钟舒艺</div><div class="author-info__description text-center">我们的征途是星辰大海,从此便只顾风雨兼程</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">5</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">3</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/325115.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">钟舒艺的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a><a class="site-page" href="/">主页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span></div><div id="post-info"><div id="post-title">MYSQL总笔记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-22</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/MYSQL/">MYSQL</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="数据库基础"><a href="#数据库基础" class="headerlink" title="数据库基础"></a>数据库基础</h1><p>数据库是一个以某种有组织的方式储存的数据集合</p>
+<ol>
+<li><p>表<br>表是一种结构化的文件,可用来存储某种特定类型的数据.(类似于EXCEL表格)<br>表可以保存顾客清单,产品目录,或者其他信息清单<br>在同一个数据库中,表的名字是唯一的,但在不同数据库中表的名字可以相同</p>
+</li>
+<li><p>模式<br>模式是关于数据库和表的布局以及特征的信息</p>
+</li>
+<li><p>列<br>表中的一个字段,所有表都是由一个或多个列组成的</p>
+</li>
+<li><p>数据类型<br>所容许的数据的类型,每个表列都有相应的数据类型,它限制该列中储存的数据</p>
+</li>
+<li><p>行<br>表中的一条记录<br>表中的数据是按行储存的,所保存的每个记录储存在自己的行内,如果表是网格,网格中垂直的为列,水平的为表行</p>
+</li>
+<li><p>主键<br>虽然主键不是必须的,但最好每个表都定义一个主键,主键列有以下特点:<br>主键列不能为NULL(空值)<br>每个主键的值必须唯一,不能与主键上的其他值相同<br>使用主键的好习惯:<br>不更新主键列的值<br>不重用主键列的值<br>不在主键列中使用可能会更改的值</p>
+</li>
+<li><p>SQL<br>SQL结构化查询语言,是一种专门用来与数据库通信的语言</p>
+</li>
+</ol>
+<h1 id="数据定义"><a href="#数据定义" class="headerlink" title="数据定义"></a>数据定义</h1><h2 id="定义数据库"><a href="#定义数据库" class="headerlink" title="定义数据库"></a>定义数据库</h2><h3 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h3><figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> &#123; <span class="keyword">database</span> | <span class="keyword">schema</span>&#125; [<span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span>] 数据库名</span><br><span class="line">[ [<span class="keyword">default</span>] <span class="built_in">character</span> <span class="keyword">set</span> [=] 数据库字符集]</span><br><span class="line">[[<span class="keyword">default</span>] <span class="keyword">collate</span> [=] 字符集的校对规则];</span><br></pre></td></tr></table></figure>
+
+<p>语法说明:</p>
+<ol>
+<li>语句中的<code>[ ]</code>中的为可选项</li>
+<li>语句中的<code>|</code>用于分隔花括号中的选择项,两种选择一种即可,表示”或”关系</li>
+<li>中文的字符集为gb2312,校对规则为gb2312_chinese_ci</li>
+<li>if not exists语句会在创建前进行检查,若该数据库已存在,则不会再创建而导致错误</li>
+</ol>
+<p>实例:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">database</span> db_shool</span><br><span class="line"><span class="keyword">default</span> <span class="built_in">character</span> <span class="keyword">set</span> gb2312</span><br><span class="line"><span class="keyword">default</span> <span class="keyword">collate</span> gb2312_chinese_ci;</span><br><span class="line"></span><br><span class="line">Query OK, 1 row affected (0.01 sec)</span><br></pre></td></tr></table></figure>
+
+<p>在数据库中创建了一个名为db_shool的数据库<br>系统会自动在MySQL的缺省安装路径上例如<br><code>C:\Program Files\MySQL\MySQL Server 5.5\data\performance_schema</code><br>里面新建一个名字为db.opt文件,用于储存所创建数据库的全局特性</p>
+<h3 id="选择与查看数据库"><a href="#选择与查看数据库" class="headerlink" title="选择与查看数据库"></a>选择与查看数据库</h3><ol>
+<li><p>选择数据库<br><code>use 数据库名;</code><br>可以选择你需要操作的数据库,只有选择数据库后才能对数据库进行操作</p>
+</li>
+<li><p>查看数据库<br><code>show {databases | schemas}</code><br>可以查看可用数据库的列表,但只会列出当前用户权限范围内所能查看到的数据库的列表<br>其中除了自己创建的数据库外,有四个系统数据库</p>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th align="center">数据库名称</th>
+<th align="center">数据库作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">mysql</td>
+<td align="center">描述用户的访问权限</td>
+</tr>
+<tr>
+<td align="center">information_schema</td>
+<td align="center">保存关于MySQL服务器所维护的所有其他数据库的信息,如数据库名,数据库的表,表字段的数据类型与访问权限等</td>
+</tr>
+<tr>
+<td align="center">performance_schema</td>
+<td align="center">主要用于收集数据库服务器性能参数</td>
+</tr>
+<tr>
+<td align="center">test</td>
+<td align="center">用户利用该数据库进行测试工作</td>
+</tr>
+</tbody></table>
+<h3 id="修改数据库"><a href="#修改数据库" class="headerlink" title="修改数据库"></a>修改数据库</h3><p>可以修改数据库的 默认字符集以及校对规则</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">alter</span> &#123; <span class="keyword">database</span> | <span class="keyword">schema</span>&#125; [<span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span>] 数据库名</span><br><span class="line">[<span class="keyword">default</span>] <span class="built_in">character</span> <span class="keyword">set</span> [=] 数据库字符集</span><br><span class="line">[<span class="keyword">default</span>] <span class="keyword">collate</span> [=] 字符集的校对规则;</span><br></pre></td></tr></table></figure>
+
+<p>注意点:</p>
+<ol>
+<li>此语句用于修改全局特性,也就是数据库目录中的db.opt </li>
+<li>使用此命令时用户必须有修改权限</li>
+<li>数据库名称省略后表示修改当前选中数据库<h2 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h2>将已创建的数据库文件夹从磁盘删除,数据库中所有数据将被删除<br><code>drop { database | schema} [if exists] 数据库名</code><br>if exists可以避免数据库不存在时报错</li>
+</ol>
+<h2 id="定义表"><a href="#定义表" class="headerlink" title="定义表"></a>定义表</h2><p>数据表是数据库中最重要,最基本的数据对象,是数据存储的基本单位,若没有表,数据库中的其他数据对象就没有意义</p>
+<h3 id="常用数据类型"><a href="#常用数据类型" class="headerlink" title="常用数据类型"></a>常用数据类型</h3><ol>
+<li>数值类型<img src="/img/MYSQL总笔记/sjlx.png"></li>
+<li>日期类型<img src="/img/MYSQL总笔记/sjlx2.png"></li>
+<li>字符串类型<img src="/img/MYSQL总笔记/sjlx3.png">
+
+</li>
+</ol>
+<h3 id="创建表"><a href="#创建表" class="headerlink" title="创建表"></a>创建表</h3><p>语法:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> 表名</span><br><span class="line">(</span><br><span class="line">	字段名<span class="number">1</span> 数据类型 [列级完整性约束条件] [默认值]</span><br><span class="line">	[, 字段名<span class="number">2</span> 数据类型 [列级完整性约束条件] [默认值] ]</span><br><span class="line">	[, ....]</span><br><span class="line">	[,表级完整性约束条件]</span><br><span class="line">)[<span class="keyword">engine</span>= 引擎类型];</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>创建者必须有表的create权限</li>
+<li><code>[ ]</code>中的参数都是可选参数</li>
+<li>创建多字段必须用逗号隔开,字段名在表中必须唯一</li>
+</ol>
+<h3 id="查看表"><a href="#查看表" class="headerlink" title="查看表"></a>查看表</h3><ol>
+<li><p>查看所有表名称<br><code>show tables [{from | in} 数据库名];</code><br>{from | in} 数据库名可以显示非当前数据库中的数据库表名称</p>
+</li>
+<li><p>查看表的基本结构<br>查看表的字段名,字段数据类型,字段值是否允许为空,是否为主键,是否有默认值等<br><code>show columns {from | in} 表名 [{from|in}数据库名];</code><br><code>{describe | desc} 表名;</code></p>
+</li>
+<li><p>查看表的详细结构<br><code>show create table 表名 {; | \G}
+使用</code>\G`结尾可以使信息更清晰</p>
+</li>
+</ol>
+<h3 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h3><p>常用:修改字段名或字段数据类型,添加和删除字段,修改字段排练位置,更改表的储存引擎类型,增加和删除表的约束等</p>
+<ol>
+<li><p>添加字段<br>在已有的表中添加字段,可同时添加多个<br><code>alter table 表名 add [column] 新字段名 数据类型  [约束条件] [first | after  已有字段名]</code><br>first表示将字段添加到表的第一个字段<br>after表示添加到指定字段后面一个<br>如果没有这两个参数,默认添加到表的最后一列</p>
+</li>
+<li><p>修改字段<br>change子句:同时修改列名和数据类型,并且可以修改多个(需要逗号隔开)<br><code>alter table 表名 change [column] 原字段名 新字段名 数据类型[约束条件];</code><br>alter子句:修改或删除表中指定列的默认值<br><code>alter table 表名 alter [column] 字段名 {set | drop } default;</code><br>modify子句:修改数据类型或指定列在表中的位置<br><code>alter table 表名 modify [column] 字段名 数据类型 [约束条件] [first | after 已有字段名]</code></p>
+</li>
+<li><p>删除字段<br>在删除列后,原本在该列的数据也会被删除<br><code>alter table 表名 drop [column] 字段名;</code></p>
+</li>
+</ol>
+<h3 id="重命名表"><a href="#重命名表" class="headerlink" title="重命名表"></a>重命名表</h3><p><code>alter table 原表名 rename [to] 新表名;</code><br><code>rename  table 原表名1  to 新表名1[,原表名 2  to 新表名2]....;</code><br>rename  table子句可以重命名多个表名</p>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><p><code>drop table [if exists ] 表1 [,表2]...;</code><br>可以删除多个表<br>if exists 可以判断表是否存在再删除,避免出错</p>
+<h2 id="数据的完整性约束"><a href="#数据的完整性约束" class="headerlink" title="数据的完整性约束"></a>数据的完整性约束</h2><p>完整性规则是对关系的某种约束条件<br>对关系模型施加完整性约束,则是为了数据库应用中保障数据的正确性和一致性,防止数据库中存在不符合语义的不正确的数据,这也是数据库服务器最重要的功能之一<br>完整性约束既能有效防止对MYSQL数据库的意外破坏和非法存取,又能提高完整性检测的效率,还能减轻MySQL编程人员的工作负担</p>
+<h3 id="定义实体完整性"><a href="#定义实体完整性" class="headerlink" title="定义实体完整性"></a>定义实体完整性</h3><p><strong>通过主键约束和候选键约束实现,主属性不能为空</strong></p>
+<h4 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h4><ol>
+<li>每个主键的值必须唯一,且不能为null</li>
+<li>每个表只能有一个主键</li>
+<li>复合主键不能包含不必要的多余列</li>
+<li>一个列名在复合主键的列表中只能出现一次</li>
+</ol>
+<p>定义:<br>将字段studentNo定义为主键<br>列级:<br>某个字段后加上关键字primary key<br>例:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_student</span><br><span class="line">(</span><br><span class="line">	studentNo <span class="built_in">char</span>(<span class="number">10</span>) primary <span class="keyword">key</span>,</span><br><span class="line">	studentName <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	sex <span class="built_in">char</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	birthday <span class="built_in">date</span>,</span><br><span class="line">	nation <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="string">'汉'</span>,</span><br><span class="line">	classNo <span class="built_in">char</span>(<span class="number">6</span>)</span><br><span class="line">)<span class="keyword">engine</span>=<span class="keyword">innodb</span>;</span><br></pre></td></tr></table></figure>
+
+<p>表级:</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_student</span><br><span class="line">(</span><br><span class="line">	studentNo <span class="built_in">char</span>(<span class="number">10</span>) ,</span><br><span class="line">	studentName <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	sex <span class="built_in">char</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	birthday <span class="built_in">date</span>,</span><br><span class="line">	nation <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="string">'汉'</span>,</span><br><span class="line">	classNo <span class="built_in">char</span>(<span class="number">6</span>),</span><br><span class="line">	primary <span class="keyword">key</span>(studentNo)</span><br><span class="line">)<span class="keyword">engine</span>=<span class="keyword">innodb</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="完整性约束的命名"><a href="#完整性约束的命名" class="headerlink" title="完整性约束的命名"></a>完整性约束的命名</h4><p>在<strong>表级完整约束性</strong>前面使用constraint给约束命名<br><code>constraint 约束名字 完整性约束(字段列表)</code></p>
+<h4 id="候选键约束"><a href="#候选键约束" class="headerlink" title="候选键约束"></a>候选键约束</h4><ol>
+<li>候选键可以是某一列,也可以是某些列的组合</li>
+<li>值必须唯一,且不能是null</li>
+</ol>
+<p>定义:<br>与主键约束相似,同样有列级与表级,定义时只是把主键约束的primary key 换成unique即可</p>
+<h3 id="定义参照完整性-外键"><a href="#定义参照完整性-外键" class="headerlink" title="定义参照完整性(外键)"></a>定义参照完整性(外键)</h3><p>参照完整性规则定义的是外键与主键之间的引用规则,既外键的取值或者为空,或者等于被参照关系中的某个主键的值<br>例如有某个年纪的班级列表与某个班级的人员表,学生的班级编号必须是班级列表里已存在的主键值</p>
+<p>注意:</p>
+<ol>
+<li>被参照表必须已创建,或者是当前正在创建,若是后一种,则被参照表与参照表是同一个表,这样的表称为自参照表,这样的结构 ,称为自参照完整性</li>
+<li>必须在被参照表的表名后面指定列名或列名的组合,这个列或列的组合必须是被参照表的主键或候选键</li>
+<li>主键列不能为NULL,但外键可以为空值</li>
+<li>外键对应列的数据类型必须与被参照表的主键对应数据类型相同</li>
+<li>外键只能使用储存引擎InnoDB创建的表中,其他储存引擎不支持外键</li>
+</ol>
+<p>列级方式示例</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_student</span><br><span class="line">(</span><br><span class="line">	studentNo <span class="built_in">char</span>(<span class="number">10</span>) ,</span><br><span class="line">	studentName <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	sex <span class="built_in">char</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	birthday <span class="built_in">date</span>,</span><br><span class="line">	nation <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="string">'汉'</span>,</span><br><span class="line">	classNo <span class="built_in">char</span>(<span class="number">6</span>) <span class="keyword">references</span> tb_class(classNo),</span><br><span class="line">	<span class="keyword">constraint</span> PK_student primary <span class="keyword">key</span>(studentNo)</span><br><span class="line">)<span class="keyword">engine</span>=<span class="keyword">innodb</span>;</span><br></pre></td></tr></table></figure>
+
+<p>该外键定义成功的前提条件是:<br>tb_class表已存在且classNo字段是该表的主键<br>定义完成后tb_student表中classNo的值必须为tb_class表中主键classNo列的值</p>
+<p>表级方式遵循上面规则</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> tb_student</span><br><span class="line">(</span><br><span class="line">	studentNo <span class="built_in">char</span>(<span class="number">10</span>) ,</span><br><span class="line">	studentName <span class="built_in">varchar</span>(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	sex <span class="built_in">char</span>(<span class="number">2</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">	birthday <span class="built_in">date</span>,</span><br><span class="line">	nation <span class="built_in">varchar</span>(<span class="number">10</span>) <span class="keyword">default</span> <span class="string">'汉'</span>,</span><br><span class="line">	classNo <span class="built_in">char</span>(<span class="number">6</span>) ,</span><br><span class="line">	<span class="keyword">constraint</span> PK_student primary <span class="keyword">key</span>(studentNo)</span><br><span class="line">	<span class="keyword">constraint</span> Fk_student <span class="keyword">foreign</span> <span class="keyword">key</span>(classNo) <span class="keyword">references</span> tb_class(classNo)</span><br><span class="line">)<span class="keyword">engine</span>=<span class="keyword">innodb</span>;</span><br></pre></td></tr></table></figure>
+
+<p>给外键定义参照动作<br>给外键定义参照动作时，需要包括两部分：一是要指定参照动作适用的语句，即update和delete 语句；二是要指定采取的动作，即 cascade、restrict、set null、no action和setdefault，其中restrict为默认值。具体策略如下：</p>
+<p><code>RESTRICT</code>：限制策略，即当要删除或修改被参照表中被参照列上且在外键中出现的值时，系统拒绝对被参照表的删除或修改操作。<br><code>CASCADE</code>：级联策略，即从被参照表中删除或修改记录时，自动删除或修改参照表中匹配的记录。<br><code>SET NULL</code>：置空策略，即当从被参照表中删除或修改记录时，设置参照表中与之对应的外键列的值为NULL。这个策略需要被参照表中的外键列没有声明限定词NOT NULL。<br><code>NO ACTION</code>：表示不采取实施策略，即当一个相关的外键值在被参照表中时，删除或修改被参照表中键值的动作不被允许。该策略的动作语义与RESTRICT相同。<br><code>SET DEFAULT</code>：默认值策略，即当从被参照表中删除或修改记录行，设置参照表中与之对应的外键列的值为默认值。这个策略要求已经为该列定义了默认值。</p>
+<p>参照动作只需要在定义表时在最后的定义语句之后加上 <code>on 参照动作</code>就可以了</p>
+<h3 id="用户定义的完整性"><a href="#用户定义的完整性" class="headerlink" title="用户定义的完整性"></a>用户定义的完整性</h3><p>用户定义的完整性规则反应了某一具体应用所涉及的数据应满足的语义要求<br>例如性别不能为空且只能为男或女</p>
+<ol>
+<li><p>非空约束<br>非空约束是指字段的值不能为空,如果用户在添加数据时没有给其指定值,数据库系统就会报错<br>定义方法:在某个列定义时在后面添加 not null即可</p>
+</li>
+<li><p>check约束<br>check约束需要指定限定条件,可以分表级跟列级,列级可以定义单个字段,表级可以定义多个<br>定义:<br><code>check(表达式);</code><br>可以使用简单表达式也可以使用复杂的表达条件作为限定条件,例如子查询</p>
+</li>
+</ol>
+<h3 id="更新完整性约束"><a href="#更新完整性约束" class="headerlink" title="更新完整性约束"></a>更新完整性约束</h3><p>可以使用alter table 语句更新完整性约束</p>
+<h4 id="删除约束"><a href="#删除约束" class="headerlink" title="删除约束"></a>删除约束</h4><ol>
+<li><p>删除外键约束<br><code>alter table 表名 drop foreign key 外键约束名</code><br>如果定义时没有指定外键约束名字可以用show create table语句查看系统给外键约束指定的名字</p>
+</li>
+<li><p>删除主键约束<br><code>alter table 表名 drop primary key;</code><br>因为主键一个表中只能定义一个所以可以不使用名字</p>
+</li>
+<li><p>删除候选键约束<br>删除候选键约束时,实际删除的的唯一性索引,应使用drop index子句删除,若没有给定约束名,MySQL自动将字段名定义成索引名<br><code>alter table 表名 drop index {约束名 | 候选键字段名};</code></p>
+</li>
+</ol>
+<h4 id="添加约束"><a href="#添加约束" class="headerlink" title="添加约束"></a>添加约束</h4><p>可以使用alter table语句添加完整性约束</p>
+<ol>
+<li><p>添加主键约束<br><code>alter table 表名 add [constraint 约束名] primary key(主键字段);</code></p>
+</li>
+<li><p>添加外键约束<br><code>alter table 表名 add [constraint 约束名] foreign key(外键字段名)  references  被参照表(主键字段名);</code></p>
+</li>
+<li><p>添加候选键约束<br><code>alter table 表名 add [constraint 约束名] unique key(字段名);</code></p>
+</li>
+</ol>
+<h1 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h1></div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">钟舒艺</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/22/MYSQL总笔记/">http://yoursite.com/2019/08/22/MYSQL总笔记/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">钟舒艺的博客</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/总结/">总结</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/weixin.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><nav id="pagination"><div class="next-post pull-right"><a href="/2019/08/19/换系统/"><span>换系统</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitment-container"></div><script>var gitment = new Gitment({
+  id: md5(decodeURI(location.pathname)),
+  owner: 'https://github.com/zhongshuyi',
+  repo: 'https://github.com/zhongshuyi/zhongshuyi.github.io',
+  oauth: {
+    client_id: '84bea3f88c6f03455cbd',
+    client_secret: 'c2d78b22fea19f92e17f4d38f13a3537f680ef0e'
+  }
+})
+gitment.render('gitment-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/325115.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2019 By 钟舒艺</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">我们的征途是星辰大海,从此便只顾风雨兼程</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>

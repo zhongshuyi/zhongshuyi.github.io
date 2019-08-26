@@ -1,0 +1,599 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta name="generator" content="Hexo 3.9.0"><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Java总笔记"><meta name="keywords" content="总结"><meta name="author" content="钟舒艺"><meta name="copyright" content="钟舒艺"><title>Java总笔记 | 钟舒艺的博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.6.1"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.6.1"><link rel="dns-prefetch" href="https://cdn.staticfile.org"><link rel="dns-prefetch" href="https://cdn.bootcss.com"><link rel="dns-prefetch" href="https://creativecommons.org"><link rel="dns-prefetch" href="https://unpkg.com"><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/gitment/style/default.min.css"><script src="https://cdn.jsdelivr.net/npm/gitment/dist/gitment.browser.min.js"></script><script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.10.0/js/md5.min.js"></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  }
+} </script></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar"><div class="toggle-sidebar-info text-center"><span data-toggle="切换文章详情">切换站点概览</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java运行原理"><span class="toc-number">1.</span> <span class="toc-text">java运行原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java虚拟机-JVM"><span class="toc-number">1.1.</span> <span class="toc-text">Java虚拟机(JVM)</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java程序设计环境"><span class="toc-number">2.</span> <span class="toc-text">Java程序设计环境</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#下载"><span class="toc-number">2.1.</span> <span class="toc-text">下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-number">2.2.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置环境变量"><span class="toc-number">2.3.</span> <span class="toc-text">配置环境变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#检查环境是否配置完成"><span class="toc-number">2.4.</span> <span class="toc-text">检查环境是否配置完成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JAVA-HOME"><span class="toc-number">2.5.</span> <span class="toc-text">JAVA_HOME</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作用"><span class="toc-number">2.5.1.</span> <span class="toc-text">作用:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置"><span class="toc-number">2.5.2.</span> <span class="toc-text">配置</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#第一个Java程序"><span class="toc-number">3.</span> <span class="toc-text">第一个Java程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令行编译Java程序"><span class="toc-number">3.1.</span> <span class="toc-text">命令行编译Java程序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eclipse集成开发环境"><span class="toc-number">3.2.</span> <span class="toc-text">eclipse集成开发环境</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#java的基本程序设计结构"><span class="toc-number">4.</span> <span class="toc-text">java的基本程序设计结构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#注释"><span class="toc-number">4.1.</span> <span class="toc-text">注释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-number">4.2.</span> <span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整型"><span class="toc-number">4.2.1.</span> <span class="toc-text">整型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#浮点型"><span class="toc-number">4.2.2.</span> <span class="toc-text">浮点型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符型"><span class="toc-number">4.2.3.</span> <span class="toc-text">字符型</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-number">4.3.</span> <span class="toc-text">变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常量值"><span class="toc-number">4.4.</span> <span class="toc-text">常量值</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#整型常量值"><span class="toc-number">4.4.1.</span> <span class="toc-text">整型常量值:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实型常量值"><span class="toc-number">4.4.2.</span> <span class="toc-text">实型常量值:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#布尔型常量值"><span class="toc-number">4.4.3.</span> <span class="toc-text">布尔型常量值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符型和字符串常量值"><span class="toc-number">4.4.4.</span> <span class="toc-text">字符型和字符串常量值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义常量"><span class="toc-number">4.4.5.</span> <span class="toc-text">定义常量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据类型之间的转换"><span class="toc-number">4.4.6.</span> <span class="toc-text">数据类型之间的转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#运算符"><span class="toc-number">4.5.</span> <span class="toc-text">运算符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算数运算符"><span class="toc-number">4.5.1.</span> <span class="toc-text">算数运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#赋值运算符"><span class="toc-number">4.5.2.</span> <span class="toc-text">赋值运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关系运算符"><span class="toc-number">4.5.3.</span> <span class="toc-text">关系运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#自增自减运算符"><span class="toc-number">4.5.4.</span> <span class="toc-text">自增自减运算符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#逻辑运算符"><span class="toc-number">4.5.5.</span> <span class="toc-text">逻辑运算符</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA多线程"><span class="toc-number">5.</span> <span class="toc-text">JAVA多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#实现Runnable接口"><span class="toc-number">5.1.</span> <span class="toc-text">实现Runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Thread类和Runnable接口"><span class="toc-number">5.2.</span> <span class="toc-text">Thread类和Runnable接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的状态"><span class="toc-number">5.3.</span> <span class="toc-text">线程的状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建状态"><span class="toc-number">5.3.1.</span> <span class="toc-text">创建状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#就绪状态"><span class="toc-number">5.3.2.</span> <span class="toc-text">就绪状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行状态"><span class="toc-number">5.3.3.</span> <span class="toc-text">运行状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#堵塞状态"><span class="toc-number">5.3.4.</span> <span class="toc-text">堵塞状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#死亡状态"><span class="toc-number">5.3.5.</span> <span class="toc-text">死亡状态</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程操作相关方法"><span class="toc-number">5.4.</span> <span class="toc-text">线程操作相关方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#取得和设置线程名称"><span class="toc-number">5.4.1.</span> <span class="toc-text">取得和设置线程名称</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中断线程"><span class="toc-number">5.4.2.</span> <span class="toc-text">中断线程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程休眠"><span class="toc-number">5.4.3.</span> <span class="toc-text">线程休眠</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程优先级"><span class="toc-number">5.5.</span> <span class="toc-text">线程优先级</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="/img/avatar.jpg"></div><div class="author-info__name text-center">钟舒艺</div><div class="author-info__description text-center">我们的征途是星辰大海,从此便只顾风雨兼程</div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">文章</span><span class="pull-right">5</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">标签</span><span class="pull-right">3</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">分类</span><span class="pull-right">4</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(/img/325115.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">钟舒艺的博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus"><a class="site-page social-icon search"><i class="fa fa-search"></i><span> 搜索</span></a><a class="site-page" href="/">主页</a><a class="site-page" href="/archives">归档</a><a class="site-page" href="/tags">标签</a><a class="site-page" href="/categories">类别</a></span></div><div id="post-info"><div id="post-title">Java总笔记</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2019-08-17</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/JAVA/">JAVA</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="java运行原理"><a href="#java运行原理" class="headerlink" title="java运行原理"></a>java运行原理</h1><p><strong>java编译器 (编译) → 虚拟机(解释执行) → 解释器(翻译) → 机器码</strong></p>
+<p>Java源程序经过编译器编译后变成字节码，字节码由虚拟机解释执行，虚拟机将每一条要执行的字节码送给解释器，解释器将其翻译成特定机器上的机器码，然后在特定的机器上运行。</p>
+<h2 id="Java虚拟机-JVM"><a href="#Java虚拟机-JVM" class="headerlink" title="Java虚拟机(JVM)"></a>Java虚拟机(JVM)</h2><p>java虚拟机是一个虚构出来的计算机,是通过在实际的计算机上仿真模拟各种计算机功能来模拟实现的</p>
+<p>Java中，类加载器把一个类装入JAVA虚拟机需要经过三个步骤来完成：<strong>装载、链接、初始化</strong>，其中链接又分来校验、准备、解析过程</p>
+<ol>
+<li><p>装载：查找和导入.class文件</p>
+</li>
+<li><p>链接：检查装入.class文件的正确性，然后，java虚拟机为变量分配内存，设置默认值</p>
+</li>
+<li><p>初始化：把符号引用变成直接引用</p>
+</li>
+</ol>
+<hr>
+<h1 id="Java程序设计环境"><a href="#Java程序设计环境" class="headerlink" title="Java程序设计环境"></a>Java程序设计环境</h1><h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p><strong>下载jdk</strong><br>链接：<a href="https://pan.baidu.com/s/158xbJW96bKMMVxGtU7cB8w" target="_blank" rel="noopener">https://pan.baidu.com/s/158xbJW96bKMMVxGtU7cB8w</a><br>提取码：r1u9 </p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><img src="/img/java总笔记/JDK1.png">
+**狂点下一步**
+安装到默认的C:\Program Files\Java\jdk1.8.0_131目录
+
+<h2 id="配置环境变量"><a href="#配置环境变量" class="headerlink" title="配置环境变量"></a>配置环境变量</h2><ol>
+<li><p><strong>此电脑-&gt;右键,属性</strong></p>
+</li>
+<li><p><strong>-&gt;左上角列表,高级系统设置-&gt;</strong></p>
+<img src="/img/java总笔记/HJ1.png"></li>
+<li><p><strong>环境变量-&gt;</strong></p>
+<img src="/img/java总笔记/HJ2.png"></li>
+<li><p><strong>下方系统变量-&gt;选择Path变量-&gt;编辑</strong></p>
+<img src="/img/java总笔记/HJ3.png"></li>
+<li><p><strong>-&gt;新建</strong></p>
+</li>
+</ol>
+<p><strong>-&gt;将jdk的bin目录路径C:\Program Files\Java\jdk1.8.0_131\bin复制到目录</strong><br><img src="/img/java总笔记/HJ4.png"></p>
+<ol start="6">
+<li><strong>全部按确定,直至退出</strong></li>
+</ol>
+<h2 id="检查环境是否配置完成"><a href="#检查环境是否配置完成" class="headerlink" title="检查环境是否配置完成"></a>检查环境是否配置完成</h2><p>在命令行中检查环境变量是否配置成功<br>在cmd中输入Java回车出现如下信息<br><img src="/img/java总笔记/HJ5.png"><br>在cmd中输入Javac回车出现如下信息<br><img src="/img/java总笔记/HJ6.png"><br>配置完成</p>
+<h2 id="JAVA-HOME"><a href="#JAVA-HOME" class="headerlink" title="JAVA_HOME"></a>JAVA_HOME</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用:"></a>作用:</h3><ol>
+<li><p>为了方便引用<br>比如，你JDK安装在C:\ProgramFiles\Java\jdk1.7.0目录里，则设置JAVA_HOME为该目录路径, 那么以后你要使用这个路径的时候, 只需输入%JAVA_HOME%即可,避免每次引用都输入很长的路径串;</p>
+</li>
+<li><p>归一原则<br>当你JDK路径被迫改变的时候, 你仅需更改JAVA_HOME的变量值即可, 否则,你就要更改任何用绝对路径引用JDK目录的文档</p>
+</li>
+<li><p>第三方软件会引用约定好的JAVA_HOME变量, 不然, 你将不能正常使用该软件,</p>
+</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li>在系统变量中新建一个JAVA_HOME变量,值是jdk的目录,<strong>注意:是jdk的目录,不是jdk里面的bin目录</strong>若是以后安装其他版本的jdk,直接添加jdk的目录至JAVA_HOME即可<br><code>C:\Program Files\Java\jdk1.8.0_131</code><img src="/img/java总笔记/HJ8.png">
+<img src="/img/java总笔记/HJ7.png"></li>
+<li>在Path变量里面新建一个值,值是<code>%JAVA_HOME%\bin</code>(也表示jdk里面的bin目录)<img src="/img/java总笔记/HJ9.png">
+</li>
+</ol>
+<hr>
+<h1 id="第一个Java程序"><a href="#第一个Java程序" class="headerlink" title="第一个Java程序"></a>第一个Java程序</h1><h2 id="命令行编译Java程序"><a href="#命令行编译Java程序" class="headerlink" title="命令行编译Java程序"></a>命令行编译Java程序</h2><ol>
+<li><p>进入D盘或者其他文件夹</p>
+</li>
+<li><p>在这个目录新建一个Hello.txt的文本文档</p>
+</li>
+<li><p>输入下面代码</p>
+<figure class="highlight cs"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">Hello</span>&#123;<span class="comment">//文件名与文件名一致</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span>(<span class="params">String[] args</span>)</span>&#123;</span><br><span class="line">		System.<span class="keyword">out</span>.println(<span class="string">"你好,世界!"</span>);<span class="comment">//注意大小写</span></span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>把后缀名改为<strong>.java</strong></p>
+<img src="/img/java总笔记/DYJAVA2.png">
+</li>
+<li><p>打开cmd</p>
+</li>
+</ol>
+<p>可以直接在文件路径那里输入cmd可以直接在命令行中进入此文件夹<br><img src="/img/java总笔记/DYJAVA3.png"></p>
+<ol start="6">
+<li>打开后输入Javac Hello.java按回车</li>
+</ol>
+<p>输入Java Hello</p>
+<p>得到 “你好,世界”</p>
+<p>第一个Java程序运行完成</p>
+<h2 id="eclipse集成开发环境"><a href="#eclipse集成开发环境" class="headerlink" title="eclipse集成开发环境"></a>eclipse集成开发环境</h2><ol>
+<li><p>打开此文件夹(已汉化)</p>
+<img src="/img/java总笔记/DYJAVA4.png"></li>
+<li><p>双击eclipse.exe</p>
+<img src="/img/java总笔记/DYJAVA5.png"></li>
+<li><p>选择一个工作空间,保存以后的Java项目</p>
+</li>
+<li><p>点击文件,新建,Java项目</p>
+<img src="/img/java总笔记/DYJAVA6.png">
+</li>
+<li><p>在项目src文件夹里右键新建包,起个名字,包名所有字母小写</p>
+<img src="/img/java总笔记/DYJAVA7.png">
+<img src="/img/java总笔记/DYJAVA8.png">
+</li>
+<li><p>在新建的包右键点击,新建类,自动完成以下代码</p>
+<img src="/img/java总笔记/DYJAVA9.png">
+</li>
+<li><p>将前面的代码填充到代码区</p>
+<img src="/img/java总笔记/DYJAVA11.png">
+</li>
+<li><p>按ctrl+F11就可以运行<br>在下方控制台窗口就可以看到输出了</p>
+<img src="/img/java总笔记/DYJAVA10.png">
+</li>
+</ol>
+<hr>
+<h1 id="java的基本程序设计结构"><a href="#java的基本程序设计结构" class="headerlink" title="java的基本程序设计结构"></a>java的基本程序设计结构</h1><h2 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h2><p>有三种注释:单行注释,多行注释与文档注释</p>
+<ol>
+<li>单行注释//,最常用的注释其注释内容从 // 开始到本行结尾。 </li>
+<li>多行注释 从<code>/*</code>开始直至第一个<code>*/</code>出现都属于多行注释,但多行注释不能嵌套,多行注释也可以注释掉不需要的代码</li>
+<li>文档注释 可以自动地生成文档,这种注释以<code>/**</code>开始,以<code>*/</code>结束<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 这就是传说中的多行注释</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> 作者</span></span><br><span class="line"><span class="comment"> *	可以自动生成文档</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"你好"</span>);<span class="comment">//这是单行注释</span></span><br><span class="line">	<span class="comment">/*  System.out.println("你好");</span></span><br><span class="line"><span class="comment">		System.out.println("你好");</span></span><br><span class="line"><span class="comment">		这里都是多行注释</span></span><br><span class="line"><span class="comment">	*/</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>在 Java 中， -共有 8 种基本类型（primitive type), 其中有 4 种整型、2 种浮点类型、 1 种用于表示 Unicode编码的字符 单元的字符类型 char和 1 种用于表示真值的 boolean类型</p>
+<h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><p>整型用于表示没有小数部分的数值,它允许是负数</p>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">储存需求</th>
+<th align="center">取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">int</td>
+<td align="center">4字节</td>
+<td align="center">-2147483648-2147483647 (正好超过 20亿)</td>
+</tr>
+<tr>
+<td align="center">short</td>
+<td align="center">2字节</td>
+<td align="center">-32768-32767</td>
+</tr>
+<tr>
+<td align="center">long</td>
+<td align="center">8字节</td>
+<td align="center">-9223372036854775808-9223372036854775807</td>
+</tr>
+<tr>
+<td align="center">byte</td>
+<td align="center">1字节</td>
+<td align="center">-127-127</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">int</span> INT = <span class="number">4</span>;</span><br><span class="line">		<span class="keyword">short</span> SHORT = <span class="number">2</span>;</span><br><span class="line">		<span class="keyword">long</span> LONG= <span class="number">8</span>;</span><br><span class="line">		<span class="keyword">byte</span> BYTE=<span class="number">1</span>;</span><br><span class="line">		System.out.println(<span class="string">"int类型占用"</span>+INT+<span class="string">"字节"</span>);</span><br><span class="line">		System.out.println(<span class="string">"short类型占用"</span>+SHORT+<span class="string">"字节"</span>);</span><br><span class="line">		System.out.println(<span class="string">"LONG类型占用"</span>+LONG+<span class="string">"字节"</span>);</span><br><span class="line">		System.out.println(<span class="string">"bate类型占用"</span>+ BYTE +<span class="string">"字节"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行结果</p>
+<figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">int类型占用<span class="number">4</span>字节</span><br><span class="line">short类型占用<span class="number">2</span>字节</span><br><span class="line">LONG类型占用<span class="number">8</span>字节</span><br><span class="line">bate类型占用<span class="number">1</span>字节</span><br></pre></td></tr></table></figure>
+
+<h3 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h3><p>浮点类型用于表示有小数部分的数值,在 Java中有两种浮点类型<br>类型|储存需求|取值范围<br>—|:—:|—<br>float|4字节|大约 ± 3.402 82347E+38F (有效位数为 6 ~ 7 位）<br>double|8字节|大约 ± 1.797693 134862315 70E+308 (有效位数为 15 位)</p>
+<p>double 表示这种类型的数值精度是 float 类型的两倍（有人称之为双精度数值)。绝大部分应用程序都采用double 类型</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">float</span> FAULT = <span class="number">3.1415926F</span>;<span class="comment">//数值后</span></span><br><span class="line">		<span class="keyword">double</span> DOUBLE = <span class="number">3.1415926</span>;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"float类型:"</span>+FAULT);<span class="comment">//最多7位</span></span><br><span class="line">		System.out.println(<span class="string">"double类型:"</span>+DOUBLE);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h3><p>char 类型原本用于表示单个字符。不过，现在情况已经有所变化如今有些 Unicode 字符可以用一个 chai值描述，另外一些 Unicode 字符则需要两个 char 值</p>
+<p>char类型占两个字节</p>
+<p>char类型的字面量值要用单引号括起来<br>特殊字符转义序列</p>
+<table>
+<thead>
+<tr>
+<th align="center">转义序列</th>
+<th align="center">名称</th>
+<th align="center">Unicode值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\b</td>
+<td align="center">退格</td>
+<td align="center">\u0008</td>
+</tr>
+<tr>
+<td align="center">\t</td>
+<td align="center">制表符</td>
+<td align="center">\u0009</td>
+</tr>
+<tr>
+<td align="center">\n</td>
+<td align="center">换行</td>
+<td align="center">\u000a</td>
+</tr>
+<tr>
+<td align="center">\r</td>
+<td align="center">回车</td>
+<td align="center">\u000d</td>
+</tr>
+<tr>
+<td align="center">&quot;</td>
+<td align="center">双引号</td>
+<td align="center">\u0022</td>
+</tr>
+<tr>
+<td align="center">&#39;</td>
+<td align="center">单引号</td>
+<td align="center">\u0027</td>
+</tr>
+<tr>
+<td align="center">\</td>
+<td align="center">反斜杠</td>
+<td align="center">\u005c</td>
+</tr>
+</tbody></table>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">char</span> a = <span class="string">'1'</span>;</span><br><span class="line">		<span class="keyword">char</span> b = <span class="string">'A'</span>;</span><br><span class="line">		<span class="keyword">char</span> c = <span class="string">'男'</span>;<span class="comment">//单个汉字也可以存为char类型</span></span><br><span class="line">		<span class="keyword">char</span> d = <span class="string">'\t'</span>;<span class="comment">//制表符相当于按tab键</span></span><br><span class="line">		System.out.print(a);</span><br><span class="line">		System.out.print(b);</span><br><span class="line">		System.out.print(d);</span><br><span class="line">		System.out.print(c);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出:<br><code>1A    男</code></p>
+<p>Boolean类型<br>boolean (布尔）类型有两个值：false 和 true,用来判定逻辑条件整型值和布尔值之间不能进行相互转换,这点不同于c语言</p>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>变量声明语法:<br>`数据类型 变量名 [= 变量值];’<br>变量名遵循以下规则:</p>
+<ol>
+<li>首字符必须是字母、下划线（―）、美元符号（$）或者人民币符号（¥）。</li>
+<li>标识符由数字（0<del>9）、大写字母（A</del>Z）、小写字母（a~z）、下划线（―）、美元符号（$）、人民币符号（¥）以及所有在十六进制 0xc0 前的 ASCII 码组成。</li>
+<li>不能把关键字、保留字作为标识符。</li>
+<li>标识符的长度没有限制。</li>
+<li>标识符区分大小写。</li>
+</ol>
+<p>变量声明可以一行声明多个变量<br><code>int i , j;//一行声明i和j两个变量</code><br><strong>不过不提倡,使用这种风格,逐一声明一个变量可以提高程序的可读性</strong></p>
+<p>变量的初始化<br>可以先声明后初始化<br><code>int i;</code><br><code>i=8</code><br>也可以声明的时候初始化<br><code>int i = 8;</code></p>
+<p><strong>在Java中,变量的声明尽量靠近第一次使用的地方,这是一种良好的程序编写风格</strong></p>
+<h2 id="常量值"><a href="#常量值" class="headerlink" title="常量值"></a>常量值</h2><p>常量值又称为字面常量，它是通过数据直接表示的</p>
+<h3 id="整型常量值"><a href="#整型常量值" class="headerlink" title="整型常量值:"></a>整型常量值:</h3><ol>
+<li>十进制数形式：如 54、-67、0。</li>
+<li>八进制数形式：Java 中的八进制常数的表示以 0 开头，如 0125 表示十进制数 85，-013 表示十进制数 -11。</li>
+<li>十六进制数形式：Java 中的十六进制常数的表示以 0x 或 0X 开头，如 0x100 表示十进制数 256，-0x16 表示十进制数 -22。</li>
+</ol>
+<h3 id="实型常量值"><a href="#实型常量值" class="headerlink" title="实型常量值:"></a>实型常量值:</h3><ol>
+<li>十进制数形式：由数字和小数点组成，且必须有小数点，如 12.34、-98.0。</li>
+<li>科学记数法形式：如 1.75e5 或 32&amp;E3，其中 e 或 E 之前必须有数字，且 e 或 E 之后的数字必须为整数。</li>
+</ol>
+<h3 id="布尔型常量值"><a href="#布尔型常量值" class="headerlink" title="布尔型常量值"></a>布尔型常量值</h3><p>Java 的布尔型常量只有两个值，即 false（假）和 true（真）。</p>
+<h3 id="字符型和字符串常量值"><a href="#字符型和字符串常量值" class="headerlink" title="字符型和字符串常量值"></a>字符型和字符串常量值</h3><p>Java 的字符型常量值是用单引号引起来的一个字符，如 ‘e’、E’。需要注意的是，Java 字符串常量值中的单引号和双引号不可混用。双引号用来表示字符串，像 “11”、”d” 等都是表示单个字符的字符串。</p>
+<h3 id="定义常量"><a href="#定义常量" class="headerlink" title="定义常量"></a>定义常量</h3><p>java中,利用关键字 final 指示常量<br><code>final double ZHONG=3.1415;</code><br>关键字final表示这个变量只能被赋值一次,一旦被赋值后就不能再更改了<br><strong>习惯上,常量名使用全大写</strong></p>
+<h3 id="数据类型之间的转换"><a href="#数据类型之间的转换" class="headerlink" title="数据类型之间的转换"></a>数据类型之间的转换</h3><p>自动类型转换:<br>当使用上面两个数值进行二元操作时（例如 n + f，n 是整数，f 是浮点数)， 先要将两个<br>操作数转换为同一种类型，然后再进行计算。</p>
+<ol>
+<li>如果两个操作数中有一个是 double 类型， 另一个操作数就会转换为 double 类型。</li>
+<li>否则，如果其中一个操作数是 float 类型，另一个操作数将会转换为 float 类型。 </li>
+<li>否则， 如果其中一个操作数是 long 类型， 另一个操作数将会转换为 long 类型。</li>
+<li>否则， 两个操作数都将被转换为 int 类型。 </li>
+</ol>
+<p>强制类型转换<br>语法:`(目标类型)待转换变量名’ </p>
+<h2 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h2><p>运算符按照操作数的数量可以分为单目运算符、双目运算符和三目运算符。<br>最基本的运算符包括算术运算符、赋值运算符、逻辑运算符和关系运算符等<br>算术运算符都是双目运算符，即连接两个操作数的运算符。优先级上，*、/、％ 具有相同运算级别，并高于 +、-（+、- 具有相同级别）。</p>
+<h3 id="算数运算符"><a href="#算数运算符" class="headerlink" title="算数运算符"></a>算数运算符</h3><p>注意点:</p>
+<ol>
+<li>求余（％）运算要求参与运算的两个操作数均为整型，不能为其他类型。</li>
+<li>两个整数进行除法运算，其结果仍为整数。如果整数与实数进行除法运算，则结果为实数。</li>
+<li>Java 语言算术运算符的优先级是先乘除后加减</li>
+</ol>
+<h3 id="赋值运算符"><a href="#赋值运算符" class="headerlink" title="赋值运算符"></a>赋值运算符</h3><p>语法:<code>变量名称=表达式内容</code><br>赋值运算符的优先级低于算术运算符，结合方向是自右向左<br>不要将赋值运算符与相等运算符“==”混淆。</p>
+<p>赋值运算符和算数运算符组成的复合赋值运算</p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">含义</th>
+<th align="center">实例</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+=</td>
+<td align="center">将该运算符左边的数值加上右边的数值,其结果赋值给左边变量本身</td>
+<td align="center">int a=5;a+=2;</td>
+<td align="center">a=7</td>
+</tr>
+<tr>
+<td align="center">-=</td>
+<td align="center">将该运算符左边的数值减去右边的数值,其结果赋值给左边变量本身</td>
+<td align="center">int a=5;a-=2;</td>
+<td align="center">a=3</td>
+</tr>
+<tr>
+<td align="center">*=</td>
+<td align="center">将该运算符左边的数值乘以右边的数值,其结果赋值给左边变量本身</td>
+<td align="center">int a=5;a*=2;</td>
+<td align="center">a=10</td>
+</tr>
+<tr>
+<td align="center">/=</td>
+<td align="center">将该运算符左边的数值整除右边的数值,其结果赋值给左边变量本身</td>
+<td align="center">int a=5;a/=2;</td>
+<td align="center">a=2</td>
+</tr>
+<tr>
+<td align="center">%=</td>
+<td align="center">将该运算符左边的数值除以右边的数值后取余,其结果赋值给左边变量本身</td>
+<td align="center">int a=5; a%=2;</td>
+<td align="center">a=1</td>
+</tr>
+</tbody></table>
+<h3 id="关系运算符"><a href="#关系运算符" class="headerlink" title="关系运算符"></a>关系运算符</h3><p>关系运算符是二元运算符，运算结果是 boolean 型。当运算符对应的关系成立时，运算结果是 true，否则是 false。</p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">含义</th>
+<th align="center">实例</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&gt;</td>
+<td align="center">大于运算符</td>
+<td align="center">2&gt;3</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">&gt;=</td>
+<td align="center">大于或等于运算符</td>
+<td align="center">4&gt;=2</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">小于运算符</td>
+<td align="center">2&lt;3</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td align="center">&lt;=</td>
+<td align="center">小于或等于运算符</td>
+<td align="center">4&lt;=2</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">==</td>
+<td align="center">相等运算符</td>
+<td align="center">4==4</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td align="center">!=</td>
+<td align="center">不相等运算符</td>
+<td align="center">4!=2</td>
+<td align="center">true</td>
+</tr>
+</tbody></table>
+<p>关系运算符的优先级为：&gt;、&lt;、&gt;=、&lt;= 具有相同的优先级，并且高于具有相同优先级的 !=、==。关系运算符的优先级高于赋值运算符而低于算术运算符，结合方向是自左向右。</p>
+<p>关系表达式通常用于 Java 程序的逻辑判断语句的条件表达式中<br><strong>注意点:</strong></p>
+<ol>
+<li>运算符 &gt;=、==、！=、&lt;= 是两个字符构成的一个运算符，用空格从中分开写就会产生语法错误。例如 x&gt; =y; 是错误的，但是可以写成 x&gt;=y; 在运算符的两侧增加空格会提高可读性。同样将运算符写反，例如 =&gt;、=&lt;、=! 等形式会产生语法错误。</li>
+<li>由于计算机内存放的实数与实际的实数存在着一定的误差，如果对浮点数进行 ==（相等）或 !=（不相等）的比较，容易产生错误结果，应该尽量避免。</li>
+<li>不要将“==”写成“=”。</li>
+</ol>
+<h3 id="自增自减运算符"><a href="#自增自减运算符" class="headerlink" title="自增自减运算符"></a>自增自减运算符</h3><p>++ 或 – 是单目运算符，放在操作数的前面或后面都是允许的。++ 与 – 的作用是使变量的值增 1 或减 1。操作数必须是一个整型或浮点型变量。</p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">含义</th>
+<th align="center">实例</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i++</td>
+<td align="center">将 i 的值先使用再加1赋值给i变量本身</td>
+<td align="center">int i=1;int j=i++;</td>
+<td align="center">i=2 j=1</td>
+</tr>
+<tr>
+<td align="center">++i</td>
+<td align="center">将 i 的值先加1赋值给变量i本身后再使用</td>
+<td align="center">int i=1;int j=++i;</td>
+<td align="center">i=2 j=2</td>
+</tr>
+<tr>
+<td align="center">i--</td>
+<td align="center">将 i 的值先使用再减1赋值给变量i本身</td>
+<td align="center">int i=1;int j=i--;</td>
+<td align="center">i=0 j=1</td>
+</tr>
+<tr>
+<td align="center">--i</td>
+<td align="center">将 i 的值先减1后赋值给变量 i 本身再使用</td>
+<td align="center">int i=1;int j=--i;</td>
+<td align="center">i=0 j=0</td>
+</tr>
+</tbody></table>
+<p><strong>注意点:</strong></p>
+<ol>
+<li>自增/自减只能作用于变量，不允许对常量、表达式或其他类型的变量进行操作。常见的错误是试图将自增或自减运算符用于非简单变量表达式中。</li>
+<li>自增/自减运算可以用于整数类型 byte、short、int、long，浮点类型 float、double，以及字符串类型 char。</li>
+<li>在 Java 1.5 以上版本中，自增/自减运算可以用于基本类型对应的包装器类 Byte、Short、Integer、Long、Float、Double 和 Character。</li>
+<li>自增/自减运算结果的类型与被运算的变量类型相同。</li>
+<li>建议不要在表达式中使用++, 因为这样的代码很容易让人困惑，而且会带来烦人的 bug</li>
+</ol>
+<h3 id="逻辑运算符"><a href="#逻辑运算符" class="headerlink" title="逻辑运算符"></a>逻辑运算符</h3><p>逻辑运算符包括 &amp;&amp;、||、！。其中 &amp;&amp; 和 || 是双目运算符，实现逻辑与、逻辑或；！是单目运算符，实现逻辑非</p>
+<p>逻辑运算符的优先级为：！运算级别最高，&amp;&amp; 运算高于 || 运算。！运算符的优先级高于算术运算符，而 &amp;&amp; 和 || 运算则低于关系运算符。结合方向是：逻辑非（单目运算符）具有右结合性，逻辑与和逻辑或（双目运算符）具有左结合性。</p>
+<table>
+<thead>
+<tr>
+<th align="center">运算符</th>
+<th align="center">用法</th>
+<th align="center">含义</th>
+<th align="center">结合方向</th>
+<th align="center">实例</th>
+<th align="center">结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">&amp;&amp;</td>
+<td align="center">op1&amp;&amp;op2</td>
+<td align="center">逻辑与</td>
+<td align="center">自左到右</td>
+<td align="center">2&gt;1&amp;&amp;3&lt;4</td>
+<td align="center">true</td>
+</tr>
+<tr>
+<td align="center">||</td>
+<td align="center">op1||op2</td>
+<td align="center">逻辑或</td>
+<td align="center">自左到右</td>
+<td align="center">2&lt;1||3&gt;4</td>
+<td align="center">false</td>
+</tr>
+<tr>
+<td align="center">!</td>
+<td align="center">!op</td>
+<td align="center">逻辑非</td>
+<td align="center">自右到左</td>
+<td align="center">!(2&gt;4)</td>
+<td align="center">true</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="JAVA多线程"><a href="#JAVA多线程" class="headerlink" title="JAVA多线程"></a>JAVA多线程</h1><p>实现多线程有两种方式,一种是继承Thread类,另一种是实现Raunnable</p>
+<p>##继承Thread<br>Thread类在Java.lang包中定义,一个类只继承Thread类,此类就称为多线程操作类 </p>
+<p>在Thread子类中必须明确地覆写Thread类中的run()方法,此方法为线程的主体<br>定义语法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名称 <span class="keyword">extends</span> <span class="title">Thread</span>类</span>&#123; <span class="comment">//继承Thread类</span></span><br><span class="line">	属性...;		   <span class="comment">//类中定义方法</span></span><br><span class="line">	方法...;		   <span class="comment">//类中定义方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;	   <span class="comment">//覆写Thread类中的run()方法,此方法是线程的主体</span></span><br><span class="line">	        线程主体;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>启动多线程需要使用从Thread类中继承而来的start()方法</p>
+<p><strong>若通过Thread类实现多线程,那么只能调用一次start()方法,若调用多次,则会抛出”IllegalThreadStateException”异常</strong></p>
+<p>通过在 run() 方法前加 synchronized 关键字，使多个线程在执行 run() 方法时，以排队的方式进行处理<br><code>synchronized public void run()</code></p>
+<p>通过this关键字可以指定当前线程的变量</p>
+<h2 id="实现Runnable接口"><a href="#实现Runnable接口" class="headerlink" title="实现Runnable接口"></a>实现Runnable接口</h2><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> 类名称 <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123; <span class="comment">//实现Runnable接口</span></span><br><span class="line">	属性...;		         <span class="comment">//类中定义属性</span></span><br><span class="line">	方法...;	                         <span class="comment">//类中定义方法</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;             <span class="comment">//覆写Runnable接口中的run()方法</span></span><br><span class="line">		线程主体;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>若要启动实现了Runnable接口的多线程,必须靠Thread类完成启动</p>
+<p>Thread类提供了两个构造方法:public Thread(Runnable target)和public Thread(Runnable target,String name)两个构造方法</p>
+<p>具体实现方法</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">A</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">            System.out.println(name + <span class="string">"线程+i="</span> + i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">test</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        A a = <span class="keyword">new</span> A(<span class="string">"A"</span>);</span><br><span class="line">        A b = <span class="keyword">new</span> A(<span class="string">"B"</span>);</span><br><span class="line">        Thread c = <span class="keyword">new</span> Thread(a);</span><br><span class="line">        Thread d = <span class="keyword">new</span> Thread(b);</span><br><span class="line">        c.start();</span><br><span class="line">        d.start();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Thread类和Runnable接口"><a href="#Thread类和Runnable接口" class="headerlink" title="Thread类和Runnable接口"></a>Thread类和Runnable接口</h2><p>Thread类也是Runable接口的子类</p>
+<p>如果一个类继承Thread类,则不适合于多个线程共享资源,而实现了Ruanable接口,就可以方便地实现资源共享</p>
+<p>实现Runnable接口相当于继承Thread类来说,有以下显著优势:</p>
+<ol>
+<li>适合多个相同程序代码的线程去处理同一资源的情况</li>
+<li>可以避免由于Java的单继承特性带来的局限</li>
+<li>增强了程序的健壮性,代码能够被多个线程共享,代码与数据是独立的</li>
+</ol>
+<p><strong>建议在开发中使用Runnable接口实现多线程</strong></p>
+<h2 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h2><p>任何线程有五种状态:创建,就绪,运行,阻塞,终止</p>
+<h3 id="创建状态"><a href="#创建状态" class="headerlink" title="创建状态"></a>创建状态</h3><p>在程序中用构造方法创建了一个线程对象后，新的线程对象便处于新建状态，此时，它已经有了相应的内存空间和其他资源，但还处于不可运行状态。新建一个线程对象可采用Thread类的构造方法来实现，例如<code>&quot;Thread thread=new Thread();&quot;</code></p>
+<h3 id="就绪状态"><a href="#就绪状态" class="headerlink" title="就绪状态"></a>就绪状态</h3><p>新建线程对象后，调用该线程的start）方法就可以启动线程。当线程启动时，线程进入就绪状态。此时，线程将进入线程队列排队，等待CPU服务，这表明它已经具备了运行条件。</p>
+<h3 id="运行状态"><a href="#运行状态" class="headerlink" title="运行状态"></a>运行状态</h3><p>当就绪状态的线程被调用并获得处理器资源时，线程就进入了运行状态。此时，自动调用该线程对象的run()方法。run()方法定义了该线程的操作和功能。</p>
+<h3 id="堵塞状态"><a href="#堵塞状态" class="headerlink" title="堵塞状态"></a>堵塞状态</h3><p>一个正在执行的线程在某些特殊情况下，如被人为挂起或需要执行耗时的输入/输出操作时，将让出CPU并暂时中止自己的执行，进入堵塞状态。在可执行状态下，如果调用sleep()、suspend()、wait()等方法，线程都将进入堵塞状态。堵塞时，线程不能进入排队队列，只有当引起堵塞的原因被消除后，线程才可以转入就绪状态。</p>
+<h3 id="死亡状态"><a href="#死亡状态" class="headerlink" title="死亡状态"></a>死亡状态</h3><p>线程调用stop()方法时或run()方法执行结束后，即处于死亡状态。处于死亡状态的线程不具有继续运行的能力。</p>
+<p><strong>一旦线程进入可执行状态，它会在就绪状态与运行状态下辗转，同时也可能进入等待状态、休眠状态、阻塞状态或死亡状态</strong></p>
+<h2 id="线程操作相关方法"><a href="#线程操作相关方法" class="headerlink" title="线程操作相关方法"></a>线程操作相关方法</h2><table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="center">返回值类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Thread(Runnable target)</td>
+<td align="center">构造</td>
+<td>接收Runnable接口子类对象，实例化Thread 对象</td>
+</tr>
+<tr>
+<td align="center">Thread(Runnable target,String name)</td>
+<td align="center">构造</td>
+<td>接收Runnable接口子类对象，实例化Thread对象，并设置线程名称</td>
+</tr>
+<tr>
+<td align="center">Thread(String name)</td>
+<td align="center">构造</td>
+<td>实例化Thread对象，并设置线程名称</td>
+</tr>
+<tr>
+<td align="center">currentThread()</td>
+<td align="center">Thread</td>
+<td>返回目前正在执行的线程</td>
+</tr>
+<tr>
+<td align="center">getName()</td>
+<td align="center">String</td>
+<td>返回线程的名称</td>
+</tr>
+<tr>
+<td align="center">getPriority()</td>
+<td align="center">int</td>
+<td>返回线程的优先级</td>
+</tr>
+<tr>
+<td align="center">isInterrupted()</td>
+<td align="center">boolean</td>
+<td>判断目前线程是否被中断,如果是,回true,否则返回false</td>
+</tr>
+<tr>
+<td align="center">isAlive()</td>
+<td align="center">void</td>
+<td>判断线程是否在活动,如果是,回true,否则返回false</td>
+</tr>
+<tr>
+<td align="center">join() throws InterruptedException</td>
+<td align="center">void</td>
+<td>等待线程死亡</td>
+</tr>
+<tr>
+<td align="center">join(long millis) throws InterruptedException</td>
+<td align="center">void</td>
+<td>等待millis毫秒后,线程死亡</td>
+</tr>
+<tr>
+<td align="center">run()</td>
+<td align="center">void</td>
+<td>执行线程</td>
+</tr>
+<tr>
+<td align="center">setName(String name)</td>
+<td align="center">void</td>
+<td>设定线程名称</td>
+</tr>
+<tr>
+<td align="center">setPriority(int newPriority)</td>
+<td align="center">void</td>
+<td>设定线程的优先值</td>
+</tr>
+<tr>
+<td align="center">sleep(long millis)throws InterruptedException</td>
+<td align="center">void</td>
+<td>使目前正在执行的线程休眠millis毫秒</td>
+</tr>
+<tr>
+<td align="center">start()</td>
+<td align="center">void</td>
+<td>开始执行线程</td>
+</tr>
+<tr>
+<td align="center">toString()</td>
+<td align="center">String</td>
+<td>返回代表线程的字符串</td>
+</tr>
+<tr>
+<td align="center">yield()</td>
+<td align="center">void</td>
+<td>将正在执行的线程暂停,允许其他线程执行</td>
+</tr>
+<tr>
+<td align="center">setDaemon(boolean on)</td>
+<td align="center">void</td>
+<td>将一个线程设置成后台允许</td>
+</tr>
+</tbody></table>
+<p><strong>Java程序每次运行至少启动两个线程</strong></p>
+<h3 id="取得和设置线程名称"><a href="#取得和设置线程名称" class="headerlink" title="取得和设置线程名称"></a>取得和设置线程名称</h3><p>取得:<strong>getName()</strong><br>设置:<strong>setName(String name)</strong><br>系统自动设置线程名称 <code>new Thread(my).start</code> 系统分配一个名称,格式<code>Thread-Xx</code><br>运行时设置 <code>new Thread(my,&quot;name&quot;).start</code></p>
+<h3 id="中断线程"><a href="#中断线程" class="headerlink" title="中断线程"></a>中断线程</h3><p>通过<strong>interrupt()</strong>方法中断其运行状态</p>
+<h3 id="线程休眠"><a href="#线程休眠" class="headerlink" title="线程休眠"></a>线程休眠</h3><p>通过sleep(long millis)方法,需要异常处理</p>
+<pre><code class="java"><span class="keyword">try</span>{
+    Thread.sleep(<span class="number">500</span>);<span class="comment">//线程休眠</span>
+}<span class="keyword">catch</span>(Exception e){}<span class="comment">//异常处理</span></code></pre>
+<h2 id="线程优先级"><a href="#线程优先级" class="headerlink" title="线程优先级"></a>线程优先级</h2><table>
+<thead>
+<tr>
+<th>定义</th>
+<th align="center">描述</th>
+<th align="center">表示的常量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public static final int MIN_PRIORITY</td>
+<td align="center">最低优先级</td>
+<td align="center">1</td>
+</tr>
+<tr>
+<td>public static final int NORM_PRIORITY</td>
+<td align="center">中等优先级,线程默认优先级</td>
+<td align="center">5</td>
+</tr>
+<tr>
+<td>public static final int MAX_PRIORITY</td>
+<td align="center">最高优先级</td>
+<td align="center">10</td>
+</tr>
+</tbody></table>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">钟舒艺</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2019/08/17/Java总笔记/">http://yoursite.com/2019/08/17/Java总笔记/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">钟舒艺的博客</a>！</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/总结/">总结</a></div><div class="post-qr-code"><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/alipay.jpg"><div class="post-qr-code__desc">支付宝打赏</div></div><div class="post-qr-code-item"><img class="post-qr-code__img" src="/img/weixin.jpg"><div class="post-qr-code__desc">微信打赏</div></div></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2019/08/19/换系统/"><i class="fa fa-chevron-left">  </i><span>换系统</span></a></div><div class="next-post pull-right"><a href="/2019/08/14/MySQL语句总结/"><span>MySQL语句总结</span><i class="fa fa-chevron-right"></i></a></div></nav><div id="gitment-container"></div><script>var gitment = new Gitment({
+  id: md5(decodeURI(location.pathname)),
+  owner: 'https://github.com/zhongshuyi',
+  repo: 'https://github.com/zhongshuyi/zhongshuyi.github.io',
+  oauth: {
+    client_id: '84bea3f88c6f03455cbd',
+    client_secret: 'c2d78b22fea19f92e17f4d38f13a3537f680ef0e'
+  }
+})
+gitment.render('gitment-container')</script></div></div><footer class="footer-bg" style="background-image: url(/img/325115.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2019 By 钟舒艺</div><div class="framework-info"><span>驱动 - </span><a href="http://hexo.io"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody"><span>Melody</span></a></div><div class="footer_custom_text">我们的征途是星辰大海,从此便只顾风雨兼程</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file-o"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.6.1"></script><script src="/js/fancybox.js?version=1.6.1"></script><script src="/js/sidebar.js?version=1.6.1"></script><script src="/js/copy.js?version=1.6.1"></script><script src="/js/fireworks.js?version=1.6.1"></script><script src="/js/transition.js?version=1.6.1"></script><script src="/js/scroll.js?version=1.6.1"></script><script src="/js/head.js?version=1.6.1"></script><script src="/js/search/local-search.js"></script><script>if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+}</script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div></body></html>
