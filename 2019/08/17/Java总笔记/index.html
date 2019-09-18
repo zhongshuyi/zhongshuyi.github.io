@@ -147,7 +147,26 @@
 <p>运行结果</p>
 <figure class="highlight lsl"><table><tr><td class="code"><pre><span class="line">int类型占用<span class="number">4</span>字节</span><br><span class="line">short类型占用<span class="number">2</span>字节</span><br><span class="line">LONG类型占用<span class="number">8</span>字节</span><br><span class="line">bate类型占用<span class="number">1</span>字节</span><br></pre></td></tr></table></figure>
 
-<h3 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h3><p>浮点类型用于表示有小数部分的数值,在 Java中有两种浮点类型<br>类型|储存需求|取值范围<br>—|:—:|—<br>float|4字节|大约 ± 3.402 82347E+38F (有效位数为 6 ~ 7 位）<br>double|8字节|大约 ± 1.797693 134862315 70E+308 (有效位数为 15 位)</p>
+<h3 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h3><p>浮点类型用于表示有小数部分的数值,在 Java中有两种浮点类型</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th align="center">储存需求</th>
+<th>取值范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>float</td>
+<td align="center">4字节</td>
+<td>大约 ± 3.402 82347E+38F (有效位数为 6 ~ 7 位）</td>
+</tr>
+<tr>
+<td>double</td>
+<td align="center">8字节</td>
+<td>大约 ± 1.797693 134862315 70E+308 (有效位数为 15 位)</td>
+</tr>
+</tbody></table>
 <p>double 表示这种类型的数值精度是 float 类型的两倍（有人称之为双精度数值)。绝大部分应用程序都采用double 类型</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Hello</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123;</span><br><span class="line">		<span class="keyword">float</span> FAULT = <span class="number">3.1415926F</span>;<span class="comment">//数值后</span></span><br><span class="line">		<span class="keyword">double</span> DOUBLE = <span class="number">3.1415926</span>;</span><br><span class="line"></span><br><span class="line">		System.out.println(<span class="string">"float类型:"</span>+FAULT);<span class="comment">//最多7位</span></span><br><span class="line">		System.out.println(<span class="string">"double类型:"</span>+DOUBLE);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -664,9 +683,65 @@
 <p>另外,还可以给printf指定各种标志,标志的作用是控制输出的格式<br>例:<code>.2f</code> 是指输出的时候只保留两个小数</p>
 <p>还可以指定多个标志<br>例:`%,(.2f``  是指输出时使用千分位分隔符并将负数括在括号 里保存两位小数输出</p>
 <p>用于printf的标志</p>
-<p>标志|目的|举类<br>+|打印正数和负数的符号|+3333.33<br>空格|在正数之前添加空格|| 3333.33|<br>0|数字前面补|0 003333.33<br>-|左对齐| |13333.33 |<br>(|将负数括在括号内 |( 3333.33 )<br>,|添加分组分隔符 |3,333.33 </p>
-<p>#|( 对于 f 格式)包含小数点| 3,333.</p>
-<p>#|(对于 x 或 0 格式）|添加前缀 Ox 或 0 |Oxcafe<br>$ |给定被格式化的参数索引。例如， ％l$d，％l$x 将以十进制和 十六进制格式打印第 1 个参数|159 9F<br>&lt;| 格式化前面说明的数值。 例如， ％d%&lt;X 以十进制和十六进制 打印同一个数值|159 9F</p>
+<table>
+<thead>
+<tr>
+<th align="center">标志</th>
+<th align="center">目的</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">+</td>
+<td align="center">打印正数和负数的符号</td>
+<td align="center">+3333.33</td>
+</tr>
+<tr>
+<td align="center">空格</td>
+<td align="center">在正数之前添加空格</td>
+<td align="center">| 3333.33|</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">数字前面补</td>
+<td align="center">0 003333.33</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">左对齐</td>
+<td align="center">|13333.33 |</td>
+</tr>
+<tr>
+<td align="center">(</td>
+<td align="center">将负数括在括号内</td>
+<td align="center">(3333.33)</td>
+</tr>
+<tr>
+<td align="center">,</td>
+<td align="center">添加分组分隔符</td>
+<td align="center">3,333.33</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">(对于f 格式)包含小数点</td>
+<td align="center">3,333.</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">(对于 x 或 0 格式)添加前缀 Ox 或0</td>
+<td align="center">Oxcafe</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">给定被格式化的参数索引。例如,％l$d,％l$x 将以十进制和 十六进制格式打印第 1 个参数</td>
+<td align="center">159 9F</td>
+</tr>
+<tr>
+<td align="center">&lt;</td>
+<td align="center">格式化前面说明的数值.例如,％d%&lt;X 以十进制和十六进制打印同一个数值</td>
+<td align="center">159 9F</td>
+</tr>
+</tbody></table>
 <hr>
 <h2 id="分支与循环"><a href="#分支与循环" class="headerlink" title="分支与循环"></a>分支与循环</h2><p>结构化程序化设计里面程序有三种结构: 顺序结构,选择结构,与循环结构</p>
 <h3 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h3><p>块是指两个大括号括起来的地方就是一个块,块中有若干Java语句,块确定了变量的作用域,块是可以嵌套的</p>
