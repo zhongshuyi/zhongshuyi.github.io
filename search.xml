@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>使用Excel中的Power Query合并多个工作簿的数据</title>
+      <link href="/2019/09/21/Excel1/"/>
+      <url>/2019/09/21/Excel1/</url>
+      
+        <content type="html"><![CDATA[<h1 id="使用Excel中的Power-Query合并多个工作簿的数据"><a href="#使用Excel中的Power-Query合并多个工作簿的数据" class="headerlink" title="使用Excel中的Power Query合并多个工作簿的数据"></a>使用Excel中的Power Query合并多个工作簿的数据</h1><p>之前老师叫我合并19个工作簿的数据到一张工作簿,当时不懂事,一个个复制,后来去网上查有什么快捷的方法,看到拿VBA的就有点头皮发麻,后来发现excel中的power query可以很快的合并(必须是2016版本以上的才有,如果没有就赶快装一个吧&quot;&gt;</p><p>*<em>准备工作: *</em></p><p><strong>1.一个数据来源文件夹,里面是数据来源,也就是要合并的工作簿</strong></p><p><strong>2.一个合并表,合并后的数据都在这个工作簿里</strong></p><p><strong>注意:合并表不能在数据来源的文件夹</strong></p><img src="/img/Excel1\Image.png"><p><strong>数据来源文件夹里的工作簿有数据</strong></p><img src="/img/Excel1\Image1.png"><p><strong>打开合并工作簿(空的&quot;&gt;,必须先关掉其他工作簿哦!</strong></p><img src="/img/Excel1\Image2.png"><p><strong>打开数据选项卡-&gt;获取数据-&gt;来自文件-&gt;从文件夹</strong></p><img src="/img/Excel1\Image3.png"><p><strong>选择数据来源文件夹</strong></p><p><strong>然后跳转到了Power Query编辑器</strong></p><img src="/img/Excel1\Image4.png">点击转换数据<img src="/img/Excel1\Image5.png"><p><strong>然后右键点击第一列-&gt;选择删除其他列</strong></p><img src="/img/Excel1\Image6.png"><p><strong>点合并文件按钮</strong></p><img src="/img/Excel1\Image7.png">**选择有数据的表**<img src="/img/Excel1\Image8.png"><p><strong>给表起个名字</strong></p><img src="/img/Excel1\Image9.png"><p><strong>选择关闭并上载选项卡,选择下面的关闭并上载至</strong></p><img src="/img/Excel1\Image10.png"><p>随后跳回了合并工作簿</p><img src="/img/Excel1\Image11.png"><p><strong>上面选择表</strong></p><p><strong>下面选择现有工作表或者新工作表都可以</strong></p><p><strong>这样就合并完成啦</strong></p><img src="/img/Excel1\Image12.png">]]></content>
+      
+      
+      <categories>
+          
+          <category> OFFICE </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> EXCEL </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Office-Tool</title>
       <link href="/2019/09/17/Office-Tool/"/>
       <url>/2019/09/17/Office-Tool/</url>
