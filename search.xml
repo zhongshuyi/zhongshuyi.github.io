@@ -29,31 +29,6 @@
     
     
     <entry>
-      <title>Office-Tool</title>
-      <link href="/2019/09/17/Office-Tool/"/>
-      <url>/2019/09/17/Office-Tool/</url>
-      
-        <content type="html"><![CDATA[<h1 id="Office-Tool"><a href="#Office-Tool" class="headerlink" title="Office Tool"></a>Office Tool</h1><p>在这里安利一个很好用的小工具,就是**Office Tool **</p><p>office是基本每个人都要用到的软件,但正版的微软office太贵,又因为广告不想用金山的WPS,怎么办呢</p><p>接下来推荐一个工具,它集下载,安装以及激活,卸载为一体的小工具,不用安装,轻轻松松安装Office</p><p><a href="https://otp.landian.vip/zh-cn/" target="_blank">下载传送门</a></p><h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>下载工具后,解压,然后到文件夹中</p><img src="/img/Office-Tool\Image.png"><p>双击Office Tool Plus.exe文件可以执行</p><p>执行后点左边下载选项卡,就可以看到如下页面</p><img src="/img/Office-Tool\Image1.png">选择路径时注意,最好不要有中文路径名,有的话可能会导致错误出现<p>然后底下选择默认的每月通道,因为版本每个月都会更新,选择这个通道就可以安装最新版本了</p><p>体系结构选择X86</p><p>虽然你的电脑是X64位系统的,但是64位的office有一些限制,所以还是安装32位版本的吧</p><p>点击开始即可开始下载</p><h1 id="选择安装包"><a href="#选择安装包" class="headerlink" title="选择安装包"></a>选择安装包</h1><p>下载完后一般会自动选择安装包,如果没有自动选择就在左下角手动选择</p><img src="/img/Office-Tool\Image2.png"><img src="/img/Office-Tool\Image3.png"><img src="/img/Office-Tool\Image4.png"><p>选择这个即可,这是一个完整包</p><h1 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h1><p>选择完成后点击安装选项卡,得到以下界面</p><img src="/img/Office-Tool\Image5.png"><p>office套件选择这个365的就可以,下面的如果不需要就不用选择</p><p>应用程序需要哪些就选择哪些,像我只需要word,excel跟ppt我就只选择这三个,这也是那这个工具安装让我最喜欢的部分,不像网上那些完整的安装包,不需要的一大堆全部安装了,不仅占内存还拖速度</p><img src="/img/Office-Tool\Image6.png"><p>安装模块选择,office tool plus 不然会报错</p><p>选择安装完成后在桌面创建快捷方式</p><p>然后点击右下角的开始安装</p><h1 id="激活"><a href="#激活" class="headerlink" title="激活"></a>激活</h1><p>等待安装完成后,我们再跳到激活页面</p><img src="/img/Office-Tool\Image7.png"><p>在选择一个证书下面选择一个2019的版本安装,打开你安装的任意一个没有看到要你激活的字样,就表示激活成功,如果还是要你激活就安装过一个证书</p><img src="/img/Office-Tool\Image8.png"><p>这样就安装好了!</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 软件 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 软件 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>MYSQL总笔记</title>
       <link href="/2019/08/22/MYSQL%E6%80%BB%E7%AC%94%E8%AE%B0/"/>
       <url>/2019/08/22/MYSQL%E6%80%BB%E7%AC%94%E8%AE%B0/</url>
@@ -71,31 +46,6 @@
         <tags>
             
             <tag> 总结 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>换系统</title>
-      <link href="/2019/08/19/%E6%8D%A2%E7%B3%BB%E7%BB%9F/"/>
-      <url>/2019/08/19/%E6%8D%A2%E7%B3%BB%E7%BB%9F/</url>
-      
-        <content type="html"><![CDATA[<p>电脑系统如果崩了，或者你错误的删了一些电脑系统盘里的东西需要换一个系统，去店里得五十块，这个时候如果自己会装系统就可以轻松省下这一笔钱了</p><p>由于网上PE装机教程一抓一大把,所以今天来教一个不一样的：直接将ISO镜像文件写入U盘，写入后直接插u盘可以装系统，不用进入PE，方便至极，而且U盘空余的空间可以存其他东西</p><h1 id="准备材料："><a href="#准备材料：" class="headerlink" title="准备材料："></a>准备材料：</h1><ol><li>一个U盘（4G以上吧）</li><li>软碟通：<br>链接：<a href="https://pan.baidu.com/s/1b_W2bjMQKYMpUGIVq2Sf9Q" target="_blank" rel="noopener">https://pan.baidu.com/s/1b_W2bjMQKYMpUGIVq2Sf9Q</a><br>提取码：vez5 </li><li>一个系统的镜像文件：<br>简体中文版：链接： <a href="https://pan.baidu.com/s/10PnW8lpBZC1niqi0Y1jdyA" target="_blank" rel="noopener">https://pan.baidu.com/s/10PnW8lpBZC1niqi0Y1jdyA</a> 提取码：8lpw<br>简体中文专业版：链接：<a href="https://pan.baidu.com/s/1SD2FEtHUK28CMvlv_eZt1A" target="_blank" rel="noopener">https://pan.baidu.com/s/1SD2FEtHUK28CMvlv_eZt1A</a> 提取243f <pre><code>安装密钥：VK7JG-NPHTM-C97JM-9MPGT-3V66T </code></pre>企业版：链接：<a href="https://pan.baidu.com/s/1pNWag6Qvxb7rBLQDZYQndg" target="_blank" rel="noopener">https://pan.baidu.com/s/1pNWag6Qvxb7rBLQDZYQndg</a> 提取码：lis2</li></ol><p>版本自行选择</p><h1 id="安装软碟通（注册码文件内有"><a href="#安装软碟通（注册码文件内有" class="headerlink" title="安装软碟通（注册码文件内有)"></a>安装软碟通（注册码文件内有)</h1><h1 id="打开系统映像"><a href="#打开系统映像" class="headerlink" title="打开系统映像"></a>打开系统映像</h1><p>双击打开<strong>（因为安装软碟通后设置了文件关联，可以直接打开ISO文件跳至软碟通）</strong><br><img src="/img/装系统/ZXT1.png"><br><img src="/img/装系统/ZXT2.png"></p><h1 id="插入U盘-最少8个g"><a href="#插入U盘-最少8个g" class="headerlink" title="插入U盘(最少8个g)"></a>插入U盘(最少8个g)</h1><h1 id="写入"><a href="#写入" class="headerlink" title="写入"></a>写入</h1><p>点启动里的写入硬盘映像<br><img src="/img/装系统/ZXT3.png"><br>然后点写入<br><img src="/img/装系统/ZXT4.png"></p><p>#</p>]]></content>
-      
-      
-      <categories>
-          
-          <category> 技巧 </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> 必备 </tag>
             
         </tags>
       
